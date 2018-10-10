@@ -35,17 +35,12 @@ HAS_MSI_SUPPORT=n
 
 HAS_KTHREAD_SUPPORT=n
 
-
-
-
-
-
-
 #Support statistics count
 HAS_STATS_COUNT=y
 
-# Support HOSTAPD function
+ifeq ($(HAS_HOSTAPD_SUPPORT),)
 HAS_HOSTAPD_SUPPORT=n
+endif
 
 #Support cfg80211 function with Linux Only.
 #Please make sure insmod the cfg80211.ko before our driver,
