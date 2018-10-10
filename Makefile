@@ -593,26 +593,18 @@ endif
 # information in a variable so we can use it in if_changed and friends.
 .PHONY: $(PHONY)
 
-
-
-MAKE = make
-
-ifeq ($(PLATFORM),PC)
-# Linux 2.6
-KSRC = /lib/modules/$(shell uname -r)/build
-CROSS_COMPILE =
 EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
 EXTRA_CFLAGS += -Wno-unused
-SUBARCH := $(shell uname -m | sed -e s/i.86/i386/)
-ARCH ?= $(SUBARCH)
-endif
 
-export RT28xx_DIR RT28xx_MODE KSRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE CHIPSET MODULE  KSRC
+export RT28xx_DIR RT28xx_MODE KSRC PLATFORM RELEASE CHIPSET MODULE KSRC
 
 all: modules
 
 modules:
-	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KSRC) M=$(PWD) modules
+	$(MAKE) -C $(KSRC) M=$(SRC) modules
+
+modules_install:
+	$(MAKE) -C $(KSRC) M=$(SRC) modules_install
 
 clean:
 	rm -f */*.o
@@ -636,7 +628,7 @@ help:
 	@echo "modules		build this module"
 	@echo "installfw	install firmware file"
 	@echo "clean		clean"
-	@echo "help		this help text"
+	@echo "help			this help text"
 
 # Declare the contents of the .PHONY variable as phony.  We keep that information in a variable
 .PHONY: $(PHONY)
