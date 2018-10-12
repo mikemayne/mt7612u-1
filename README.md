@@ -1,3 +1,8 @@
+<u>This has been hacked to work with open-embedded as an access point</u>
+
+It isn't working yet, I'd have a look at original repo or honestly just pick
+a different wifi part
+
 <u>**MT7612U for Linux**</u>
 
 Tested with latest -stable, v4.15.6
