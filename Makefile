@@ -616,7 +616,7 @@ clean:
 	rm -f modules.order
 
 installfw:
-	cp -n firmware/* /lib/firmware
+	cp -n firmware/* $(DEPLOY)/lib/firmware
 
 help:
 	@echo "options :"
